@@ -146,10 +146,24 @@ cmake_add_fortran_subdirectory(
   # VERBOSE
   )
 
-include (print_target_properties)  
-print_targets_properties( "lapack;blas" )
+#include (print_target_properties)  
+#print_targets_properties( "lapack;blas" )
 
 add_executable(testc src/test.c)
 target_link_libraries(testc lapack blas)
+
+# --------------------------------------------------
+# Install commands
+install(
+  FILES 
+    ${PROJECT_BINARY_DIR}/lapack-${LAPACK_VERSION}/bin/libblas.dll
+    ${PROJECT_BINARY_DIR}/lapack-${LAPACK_VERSION}/bin/liblapack.dll
+    ${PROJECT_BINARY_DIR}/lapack-${LAPACK_VERSION}/lib/libblas.dll.a
+    ${PROJECT_BINARY_DIR}/lapack-${LAPACK_VERSION}/lib/libblas.exp
+    ${PROJECT_BINARY_DIR}/lapack-${LAPACK_VERSION}/lib/libblas.lib
+    ${PROJECT_BINARY_DIR}/lapack-${LAPACK_VERSION}/lib/liblapack.dll.a
+    ${PROJECT_BINARY_DIR}/lapack-${LAPACK_VERSION}/lib/liblapack.exp
+    ${PROJECT_BINARY_DIR}/lapack-${LAPACK_VERSION}/lib/liblapack.lib
+  DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/$<CONFIG> )
 
 # --------------------------------------------------
