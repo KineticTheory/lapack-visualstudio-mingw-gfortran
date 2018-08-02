@@ -34,7 +34,16 @@ set( url "https://www.netlib.org/lapack/${tarfile}" )
 
 if( NOT EXISTS ${PROJECT_BINARY_DIR}/${tarfile} )
   message( STATUS "Downloading lapack source files to ${PROJECT_BINARY_DIR}/${tarfile}" )
-  file(DOWNLOAD ${url} ${PROJECT_BINARY_DIR}/${tarfile} SHOW_PROGRESS )
+  file(DOWNLOAD ${url} ${PROJECT_BINARY_DIR}/${tarfile} 
+       SHOW_PROGRESS 
+       STATUS DL_STATUS )
+  if( DL_STATUS )
+     message( FATAL_ERROR "Failed to download lapack sources.
+     The message was: \"${DL_STATUS}\"
+     Consider checking your proxy settings or manually downloading https://www.netlib.org/lapack/${tarfile} 
+     to ${PROJECT_BINARY_DIR}")
+  endif()
+  unset(DL_STATUS)
 endif()
 
 if( EXISTS ${PROJECT_BINARY_DIR}/${tarfile} AND NOT EXISTS ${PROJECT_SOURCE_DIR}/lapack-${LAPACK_VERSION}/README.md )
@@ -149,8 +158,10 @@ cmake_add_fortran_subdirectory(
 #include (print_target_properties)  
 #print_targets_properties( "lapack;blas" )
 
-add_executable(testc src/test.c)
-target_link_libraries(testc lapack blas)
+# This test will only run if liblapack.dll and libblas.dll are moved into 
+# the same directory as the test.
+add_executable(mytestc src/test.c)
+target_link_libraries(mytestc lapack blas)
 
 # --------------------------------------------------
 # Install commands
