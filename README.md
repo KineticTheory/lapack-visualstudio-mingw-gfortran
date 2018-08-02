@@ -1,5 +1,7 @@
 # Build wrapper for netlib-lapack
 
+Ref: [GitHub project](https://github.com:KineticTheory/lapack-visualstudio-mingw-gfortran)
+
 This build system wrapper for [netlib-lapack](https://github.com/lapack/Reference-lapack)
 provides a simple way to build the lapack and blas libraries under Visual Studio 
 so they can be used in Visual Studio projects.

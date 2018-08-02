@@ -136,6 +136,7 @@ set( build_system_state
   "-DUSE_OPTIMIZED_LAPACK=${USE_OPTIMIZED_LAPACK}"
   "-DLAPACKE=${LAPACKE}"
   "-DLAPACKE_WITH_TMG=${LAPACKE_WITH_TMG}"
+  "-DCMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX}"
   )  
 
 # add the lapack subdirectory as a fortran project the subdir is 
@@ -150,7 +151,7 @@ cmake_add_fortran_subdirectory(
                                 # --> libblas.dll and liblapack.dll
   # TARGET_NAMES foo bar
   # DEPENDS LapackFetchSources
-  NO_EXTERNAL_INSTALL
+  # NO_EXTERNAL_INSTALL
   CMAKE_COMMAND_LINE "${build_system_state}"
   # VERBOSE
   )
@@ -167,14 +168,7 @@ target_link_libraries(mytestc lapack blas)
 # Install commands
 install(
   FILES 
-    ${PROJECT_BINARY_DIR}/lapack-${LAPACK_VERSION}/bin/libblas.dll
-    ${PROJECT_BINARY_DIR}/lapack-${LAPACK_VERSION}/bin/liblapack.dll
-    ${PROJECT_BINARY_DIR}/lapack-${LAPACK_VERSION}/lib/libblas.dll.a
-    ${PROJECT_BINARY_DIR}/lapack-${LAPACK_VERSION}/lib/libblas.exp
-    ${PROJECT_BINARY_DIR}/lapack-${LAPACK_VERSION}/lib/libblas.lib
-    ${PROJECT_BINARY_DIR}/lapack-${LAPACK_VERSION}/lib/liblapack.dll.a
-    ${PROJECT_BINARY_DIR}/lapack-${LAPACK_VERSION}/lib/liblapack.exp
-    ${PROJECT_BINARY_DIR}/lapack-${LAPACK_VERSION}/lib/liblapack.lib
-  DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/$<CONFIG> )
+    ${PROJECT_SOURCE_DIR}/README.md
+  DESTINATION ${CMAKE_INSTALL_PREFIX} )
 
 # --------------------------------------------------
