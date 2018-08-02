@@ -3,19 +3,21 @@
 #include <stdio.h>
 #define size 3				/* dimension of matrix */
 
+void sgesv_(int*,int*,float*,int*,int*,float*,int*,int*);
+
 main()
 {
   int i, j , c1, c2, pivot[size], ok;
   float A[size][size], b[size], AT[size*size];	/* single precision!!! */
 
 
-  A[0][0]=3.1;  A[0][1]=1.3;  A[0][2]=-5.7;	/* matrix A */
-  A[1][0]=1.0;  A[1][1]=-6.9; A[1][2]=5.8;
-  A[2][0]=3.4;  A[2][1]=7.2;  A[2][2]=-8.8;
+  A[0][0]=(float)3.1;  A[0][1]=(float)1.3;  A[0][2]=(float)-5.7;	/* matrix A */
+  A[1][0]=(float)1.0;  A[1][1]=(float)-6.9; A[1][2]=(float)5.8;
+  A[2][0]=(float)3.4;  A[2][1]=(float)7.2;  A[2][2]=(float)-8.8;
 
-  b[0]=-1.3;			/* if you define b as a matrix then you */
-  b[1]=-0.1;			/* can solve multiple equations with */
-  b[2]=1.8;			/* the same A but different b */
+  b[0]=(float)-1.3;			/* if you define b as a matrix then you */
+  b[1]=(float)-0.1;			/* can solve multiple equations with */
+  b[2]=(float)1.8;			/* the same A but different b */
 
   for (i=0; i<size; i++)		/* to call a Fortran routine from C we */
     {				/* have to transform the matrix */
