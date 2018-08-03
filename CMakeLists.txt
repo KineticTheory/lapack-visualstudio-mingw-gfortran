@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.9.0 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.12.0 FATAL_ERROR)
 project(LAPACK-VisualStudio-mingw-gfortran 
   VERSION 1.0
   DESCRIPTION "A wrapper around LAPACK to allow compilation under Visual Studio  with assistance from MinGW gfortran."
