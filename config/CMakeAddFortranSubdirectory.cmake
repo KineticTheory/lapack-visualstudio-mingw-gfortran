@@ -65,6 +65,7 @@ function(_setup_cafs_config_and_build source_dir build_dir)
       gfortran
     PATHS
       c:/MinGW/bin
+      c:/msys64/mingw64/bin
     )
   if( NOT EXISTS ${CAFS_Fortran_COMPILER} )
     message(FATAL_ERROR
@@ -185,9 +186,6 @@ function(cmake_add_fortran_subdirectory subdir)
    the values provided by cmake_add_fortran_subdirectory's
    CMAKE_COMMAND_LINE parameter.
    ")
-    #message(FATAL_ERROR
-    #  "Option NO_EXTERNAL_INSTALL is required (for forward compatibility) "
-    #  "but was not given." )
   endif()
 
   # If the current generator/system already supports Fortran, then simply add the
@@ -338,8 +336,8 @@ cmake_add_fortran_subdirectory
    Target deps: ${project_name}_build --> ${ARGS_DEPENDS}
    Extra args : ${ARGS_CMAKE_COMMAND_LINE}
       ")
-      #include(print_target_properties)
-      #print_targets_properties(${tgt})
+      include(print_target_properties)
+      print_targets_properties(${tgt})
   endif()
   math( EXPR idx "${idx} + 1" )
   endforeach()
