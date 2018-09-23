@@ -20,7 +20,7 @@ cd %build%
 cmake -G "Visual Studio 15 2017 Win64" \
       -DCMAKE_INSTALL_PREFIX=c:\thirdparty\lapack-3.8.0
       <path_to>/lapack-visualstudio-mingw-gfortran
-cmake --build . --config Release --target install
+cmake --build . --config Release --target install -j 8
 ```
 
 # Assumptions
