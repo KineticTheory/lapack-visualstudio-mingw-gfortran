@@ -37,7 +37,7 @@ if( NOT EXISTS ${PROJECT_BINARY_DIR}/${tarfile} )
   file(DOWNLOAD ${url} ${PROJECT_BINARY_DIR}/${tarfile} 
        SHOW_PROGRESS 
        STATUS DL_STATUS )
-  if( NOT EXIST ${PROJECT_BINARY_DIR}/${tarfile} )
+  if( NOT EXISTS ${PROJECT_BINARY_DIR}/${tarfile} )
      message( FATAL_ERROR "Failed to download lapack sources.
      The message was: \"${DL_STATUS}\"
      Consider checking your proxy settings or manually downloading https://www.netlib.org/lapack/${tarfile} 
